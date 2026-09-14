@@ -679,17 +679,11 @@
     /* Standard Mobile Phones (iPhone 14/15, Galaxy, Pixel, etc.) */
     @media (max-width: 600px) {
       .celestia-world {
-<<<<<<< Updated upstream
   background-image: url('../assets/homepage/bg-mobile.jpg');
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
 }
-=======
-        background-image: url('../assets/homepage/bg-mobile.jpg');
-        background-position: center center;
-      }
->>>>>>> Stashed changes
       .pv-top-logo-img {
         width: 42px;
         height: 42px;
@@ -756,17 +750,11 @@
     /* Small Mobile Phones (iPhone SE, 360px Androids, 320px screens) */
     @media (max-width: 400px) {
       .celestia-world {
-<<<<<<< Updated upstream
   background-image: url('../assets/homepage/bg-mobile.jpg');
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
 }
-=======
-        background-image: url('../assets/homepage/bg-mobile.jpg');
-        background-position: center center;
-      }
->>>>>>> Stashed changes
       .pv-top-logo-img {
         width: 36px;
         height: 36px;
