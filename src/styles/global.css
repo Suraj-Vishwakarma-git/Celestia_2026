@@ -77,18 +77,9 @@ button { cursor: pointer; }
   transform: scale(1.02);
 }
 
-/* darken + focus the world so the leaderboard reads as the subject, not the art */
 .page::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -4;
-  pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(1, 10, 32, .12), rgba(1, 10, 32, 0) 30%, rgba(1, 10, 32, .35) 100%),
-    radial-gradient(ellipse 60% 45% at 50% 42%, rgba(1, 10, 32, 0) 40%, rgba(1, 10, 32, .38) 100%);
+  content: none;
 }
-
 
 /* =========================================================
    5. NAVBAR
@@ -194,32 +185,6 @@ button { cursor: pointer; }
 
 .nav-actions { display: flex; align-items: center; gap: 10px; }
 
-.player-search {
-  height: 39px;
-  width: 165px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 0 10px;
-  border: 2px solid #245b9b;
-  border-radius: 8px;
-  background: #0b326c;
-  color: #bcd7f8;
-  font-family: "Press Start 2P", "Nunito", sans-serif;
-}
-
-.player-search input {
-  min-width: 0;
-  width: 100%;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: #fff;
-  font-size: 8px;
-}
-
-.player-search input::placeholder { color: #c6dcfa; }
-
 .icon-btn, .profile-chip { border: 0; color: #fff; background: transparent; }
 .icon-btn { position: relative; display: grid; place-items: center; }
 
@@ -243,24 +208,6 @@ button { cursor: pointer; }
   border: 2px solid var(--pixel-cyan);
   background: #193f82;
 }
-
-.lets-play {
-  height: 46px;
-  padding: 0 14px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #101d39;
-  background: linear-gradient(#ffe966, #ffc51b);
-  border: 3px solid #14284d;
-  border-radius: 7px;
-  box-shadow: 0 4px 0 #101f3e;
-  font-weight: 900;
-  font-size: 13px;
-  transition: transform .15s ease, filter .15s ease;
-}
-
-.lets-play:hover { transform: translateY(-1px); filter: brightness(1.06); }
 
 .mobile-menu-btn { display: none; }
 
@@ -315,7 +262,7 @@ button { cursor: pointer; }
    ========================================================= */
 
 .content {
-  width: min(1000px, calc(100% - 370px));
+  width: min(1000px, calc(100% - 40px));
   margin: 35px auto 0;
   position: relative;
   z-index: 5;
@@ -377,6 +324,7 @@ button { cursor: pointer; }
   justify-content: center;
   gap: 12px;
   width: max-content;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -473,23 +421,15 @@ button { cursor: pointer; }
 .pacman {
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%) rotate(45deg);
+  width: 26px;
+  height: 26px;
+  transform: translate(-50%, -50%);
+  background: #ffd800;
   font-size: 18px;
   color: #ffffff;
   text-shadow: 2px 2px 0 #163d68, 3px 3px 0 rgba(0, 0, 0, .4);
-  z-index: 10;
   pointer-events: none;
   transition: left .13s linear;
-  animation: pixelCursorBounce .25s infinite alternate;
-
-  position: absolute;
-  top: 50%;
-  width: 26px;
-  height: 26px;
-
-  transform: translate(-50%, -50%);
-
-  background: #ffd800;
 
   /* Pixelated Pac-Man shape */
   clip-path: polygon(
@@ -523,75 +463,6 @@ button { cursor: pointer; }
     pacman-mouth 0.18s steps(1) infinite,
     pacman-bob 0.3s steps(2) infinite;
 }
-
-/* @keyframes pixelCursorBounce {
-  from { transform: translate(-50%, -55%) rotate(45deg); }
-  to { transform: translate(-50%, -45%) rotate(45deg); }
-} */
-
-/* @keyframes pacman-mouth {
-  0% {
-    clip-path: polygon(
-      25% 0%,
-      75% 0%,
-      75% 8%,
-      92% 8%,
-      92% 25%,
-      100% 25%,
-      100% 75%,
-      92% 75%,
-      92% 92%,
-      75% 92%,
-      75% 100%,
-      25% 100%,
-      25% 92%,
-      8% 92%,
-      8% 75%,
-      0% 75%,
-      0% 25%,
-      8% 25%,
-      8% 8%,
-      25% 8%
-    );
-  }
-
-  50% {
-    clip-path: polygon(
-      25% 0%,
-      75% 0%,
-      75% 8%,
-      92% 8%,
-      92% 25%,
-      55% 45%,
-      92% 75%,
-      92% 92%,
-      75% 92%,
-      75% 100%,
-      25% 100%,
-      25% 92%,
-      8% 92%,
-      8% 75%,
-      45% 55%,
-      8% 25%,
-      8% 8%,
-      25% 8%
-    );
-  }
-}
-
-@keyframes pacman-bob {
-  0% {
-    margin-top: 0;
-  }
-
-  50% {
-    margin-top: 1px;
-  }
-
-  100% {
-    margin-top: 0;
-  }
-} */
 
 @keyframes pacman-mouth {
   0% {
@@ -671,7 +542,7 @@ button { cursor: pointer; }
     inset 0 1px 0 rgba(255, 255, 255, .05);
 }
 
-.team-search-icon { margin: 0 14px 0 8px; color: #d7eaff; }
+.team-search-icon { margin: 0 14px 0 8px; color: #d7eaff; flex-shrink: 0; }
 
 .team-search input {
   flex: 1;
@@ -687,6 +558,7 @@ button { cursor: pointer; }
 .team-search input::placeholder { color: #aac7ea; }
 
 .team-search button {
+  flex-shrink: 0;
   height: 47px;
   padding: 0 22px;
   display: flex;
@@ -749,11 +621,24 @@ button { cursor: pointer; }
 
 .leaderboard-shell {
   position: relative;
+
+  width: 100%;
+  max-width: 100%;
+
   border: 2px solid var(--pixel-cyan);
   border-radius: 8px;
+
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(6, 49, 103, .97), rgba(4, 35, 76, .97));
-  box-shadow: inset 0 0 24px rgba(0, 0, 0, .35);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(6, 49, 103, .88),
+      rgba(4, 35, 76, .88)
+    );
+
+  box-shadow:
+    inset 0 0 24px rgba(0, 0, 0, .25);
 }
 
 /* bottom corner brackets, mirrored on the inner shell */
@@ -776,15 +661,23 @@ button { cursor: pointer; }
 
 /* =========================================================
    12. LEADERBOARD GRID
+   single shared grid definition — header and rows can never drift apart
    ========================================================= */
 
-/* single shared grid definition — header and rows can never drift apart */
 .table-head,
 .leader-row {
   display: grid;
-  grid-template-columns: 90px minmax(0, 1fr) 180px 200px;
+
+  grid-template-columns:
+    70px
+    minmax(200px, 1fr)
+    130px
+    130px;
+
   align-items: center;
-  column-gap: 12px;
+  column-gap: 10px;
+
+  width: 100%;
 }
 
 .table-head > *:nth-child(3),
@@ -888,7 +781,6 @@ button { cursor: pointer; }
 
 .rank-number {
   font-weight: 900;
-  font-size: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -922,8 +814,15 @@ button { cursor: pointer; }
   transition: transform .18s ease, box-shadow .18s ease;
 }
 
+/* wrapper around name + subtitle so it can shrink inside the flex row at any breakpoint */
+.player-cell > div {
+  min-width: 0;
+  overflow: hidden;
+}
+
 .player-cell strong {
   display: block;
+  min-width: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -935,6 +834,12 @@ button { cursor: pointer; }
 }
 
 .player-cell small {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: var(--pixel-muted);
   font-size: 13px;
   font-weight: 800;
@@ -955,6 +860,7 @@ button { cursor: pointer; }
   font-size: 15px;
   font-weight: 900;
   color: #d9f5ff;
+  white-space: nowrap;
 }
 
 .team-size::after {
@@ -977,6 +883,7 @@ button { cursor: pointer; }
   font-weight: 400;
   color: #fff;
   letter-spacing: .5px;
+  white-space: nowrap;
   text-shadow: 0 0 10px rgba(77, 232, 255, .45), 2px 2px 0 rgba(0, 0, 0, .3);
 }
 
@@ -1016,33 +923,10 @@ button { cursor: pointer; }
 
 .top-1 .score { color: var(--tier-gold); text-shadow: 0 0 12px rgba(255, 208, 43, .6), 2px 2px 0 rgba(0, 0, 0, .3); }
 
-/* small crown mark for rank 1, pure decoration, no markup needed */
-/* .leader-row.top-1 .rank-number::before {
-  content: "♛";
-  position: absolute;
-  top: -14px;
-  font-size: 13px;
-  color: var(--tier-gold);
-  text-shadow: 0 0 6px rgba(255, 208, 43, .8);
-} */
-
 
 /* =========================================================
    19. DECORATIONS
    ========================================================= */
-/* 
-.stone-corner {
-  position: absolute;
-  width: 80px;
-  height: 45px;
-  border: 8px solid #526b73;
-  border-radius: 45% 55% 30% 50%;
-  filter: drop-shadow(3px 4px 0 #243b46);
-  opacity: .9;
-}
-
-.stone-corner.top-left { left: -37px; top: 5px; transform: rotate(-26deg); }
-.stone-corner.top-right { right: -35px; top: 4px; transform: rotate(25deg); } */
 
 .fx-layer { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 
@@ -1251,76 +1135,235 @@ button { cursor: pointer; }
 
 /* =========================================================
    23. RESPONSIVE DESIGN
+   One consolidated block per breakpoint — desktop first, mobile last.
    ========================================================= */
 
+/* ---- ≤1250px : small desktop / large laptop ---- */
 @media (max-width: 1250px) {
   .top-nav { gap: 10px; }
   .brand { font-size: 23px; }
   .brand-controller { width: 45px; height: 35px; }
   .nav-link { padding: 0 7px; font-size: 12px; }
-  .player-search { width: 135px; }
   .content { width: min(820px, calc(100% - 300px)); }
   .side-hud { width: 160px; }
 }
 
+/* ---- ≤1100px : tablet landscape / small laptop ---- */
 @media (max-width: 1100px) {
   .running-character { width: 130px; height: 130px; background-size: 1040px 130px; }
   .running-character.left { left: 2%; top: 52%; }
   .running-character.right { right: 2%; top: 52%; }
+
+  .content {
+  width: min(100% - 40px, 1000px);
+  margin-left: auto;
+  margin-right: auto;
 }
 
+.table-head,
+.leader-row {
+  grid-template-columns:
+    clamp(45px, 5vw, 55px)
+    minmax(0, 1fr)
+    clamp(90px, 10vw, 110px)
+    clamp(90px, 10vw, 110px);
+
+  column-gap: clamp(8px, 1vw, 12px);
+}
+
+  .player-cell { gap: clamp(7px, 1vw, 10px); }
+  .player-cell img { width: clamp(36px, 4vw, 44px); height: clamp(36px, 4vw, 44px); }
+  .player-cell strong { font-size: clamp(13px, 1.4vw, 15px); }
+  .player-cell small { font-size: clamp(8px, 0.9vw, 10px); }
+  .team-size { font-size: clamp(10px, 1.1vw, 12px); }
+  .score { font-size: clamp(11px, 1.2vw, 13px); }
+  .rank-number { font-size: clamp(11px, 1.2vw, 13px); }
+}
+
+/* ---- ≤980px : tablet ---- */
 @media (max-width: 980px) {
-  .top-nav { margin-left: 14px; margin-right: 14px; }
-  .nav-links { gap: 0; }
-  .nav-link span { display: none; }
-  .content { width: calc(100% - 220px); margin-left: 190px; margin-right: 25px; }
-  .hero-title { margin-bottom: 4px; }
-  .side-hud { left: 12px; }
-  .quote-card { width: 300px; }
-  .keep-playing { right: 14px; }
-}
 
+  .top-nav {
+    margin-left: 14px;
+    margin-right: 14px;
+  }
+
+  .nav-links {
+    gap: 0;
+  }
+
+  .nav-link span {
+    display: none;
+  }
+
+  .content {
+    width: calc(100% - 40px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .table-head,
+  .leader-row {
+    grid-template-columns:
+      45px
+      minmax(0, 1fr)
+      90px
+      90px;
+
+    column-gap: 10px;
+  }
+
+  .team-size {
+    width: 100%;
+    min-width: 0;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .score {
+    width: 100%;
+    min-width: 0;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .hero-title {
+    margin-bottom: 4px;
+  }
+
+  .side-hud {
+    left: 12px;
+  }
+
+  .quote-card {
+    width: 300px;
+  }
+
+  .keep-playing {
+    right: 14px;
+  }
+}
+/* ---- ≤720px : mobile ---- */
 @media (max-width: 720px) {
   .top-nav { height: 58px; padding: 0 9px; }
   .brand { font-size: 20px; }
   .brand-controller { width: 40px; height: 32px; margin-right: 5px; }
 
-  .mobile-menu-btn {
-    display: grid;
-    place-items: center;
-    margin-left: auto;
-    border: 0;
-    background: transparent;
-    color: #fff;
-  }
+.mobile-menu-btn {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-left: auto;
 
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 61px;
-    left: 0;
-    right: 0;
-    height: auto;
-    padding: 10px;
-    flex-direction: column;
-    background: #06285e;
-    border: 2px solid #177ec4;
-    border-radius: 0 0 9px 9px;
-  }
+  border: 2px solid var(--pixel-cyan);
+  border-radius: 7px;
 
-  .nav-links.nav-open { display: flex; }
-  .nav-link { height: 43px; display: flex; }
-  .nav-link span { display: inline; }
+  background: linear-gradient(
+    180deg,
+    rgba(9, 61, 125, .95),
+    rgba(4, 34, 78, .98)
+  );
+
+  color: var(--pixel-yellow);
+
+  box-shadow:
+    3px 3px 0 var(--pixel-navy),
+    0 0 10px rgba(22, 189, 242, .25);
+
+  transition:
+    transform .15s ease,
+    background .15s ease,
+    box-shadow .15s ease;
+}
+
+.mobile-menu-btn:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(14, 78, 150, .98),
+    rgba(5, 42, 91, .98)
+  );
+
+  box-shadow:
+    3px 3px 0 var(--pixel-navy),
+    0 0 14px rgba(77, 232, 255, .45);
+
+  transform: translateY(-1px);
+}
+
+.mobile-menu-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--pixel-navy);
+}
+
+ .nav-links {
+  display: none;
+  position: absolute;
+  top: 61px;
+  left: 0;
+  right: 0;
+
+  height: auto;
+  padding: 8px;
+
+  flex-direction: column;
+
+  background: linear-gradient(
+    180deg,
+    rgba(7, 46, 103, .98),
+    rgba(4, 28, 69, .99)
+  );
+
+  border: 2px solid var(--pixel-cyan);
+  border-top: 0;
+  border-radius: 0 0 9px 9px;
+
+  box-shadow:
+    0 6px 0 rgba(3, 20, 53, .65),
+    0 0 18px rgba(0, 98, 220, .3);
+}
+
+.nav-links.nav-open {
+  display: flex;
+}
+
+.nav-link {
+  height: 43px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  border-radius: 5px;
+}
+
+.nav-link:hover {
+  background: rgba(22, 189, 242, .14);
+  color: var(--pixel-yellow);
+  padding-left: 18px;
+}
+
+.nav-link.active {
+  background: rgba(255, 213, 31, .1);
+  color: var(--pixel-yellow);
+}
+
+.nav-link.active::after {
+  display: none;
+}
+
+.nav-link span {
+  display: inline;
+}
   .nav-actions { gap: 4px; }
-  .player-search { display: none; }
-  .lets-play { height: 39px; padding: 0 8px; font-size: 11px; }
-  .lets-play svg { display: none; }
 
   .side-hud { position: fixed; top: auto; bottom: 13px; left: 10px; width: 54px; padding: 4px; }
   .side-item { width: 44px; justify-content: center; padding: 0; }
   .side-item span { display: none; }
 
-  .content { width: calc(100% - 24px); margin: 25px 12px 0; padding-bottom: 170px; }
+  .content {
+  width: calc(100% - 24px);
+  margin: 18px auto 0;
+  padding-bottom: 150px;
+}
 
   .hero-title h1 {
     font-size: clamp(36px, 12vw, 58px);
@@ -1337,8 +1380,89 @@ button { cursor: pointer; }
   .team-search button { height: 42px; padding: 0 13px; }
 
   .leaderboard-frame { padding: 4px; overflow: hidden; }
-  .leaderboard-shell { overflow-x: auto; }
-  .table-head, .leader-row { min-width: 620px; }
+  .leaderboard-shell { width: 100%; overflow: hidden; }
+
+  /* fluid table columns — no min-width, table always fits the viewport */
+.table-head,
+.leader-row {
+  grid-template-columns:
+    40px
+    minmax(0, 1fr)
+    85px
+    90px;
+
+  column-gap: 8px;
+}
+
+
+.team-size {
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+  white-space: nowrap;
+  font-size: clamp(8px, 1.8vw, 10px);
+}
+
+.score {
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+  white-space: nowrap;
+  font-size: clamp(8px, 1.8vw, 11px);
+}
+  .table-head {
+    min-height: clamp(44px, 8vw, 50px);
+    padding: 0 clamp(5px, 1.5vw, 8px);
+    font-size: clamp(6px, 1.5vw, 8px);
+  }
+
+  .leader-row {
+    min-height: clamp(62px, 10vw, 70px);
+    padding: clamp(5px, 1.5vw, 7px) clamp(5px, 1.5vw, 8px);
+  }
+
+  .player-cell { gap: clamp(6px, 1.5vw, 9px); min-width: 0; overflow: hidden; }
+  .player-cell img { width: clamp(32px, 8vw, 40px); height: clamp(32px, 8vw, 40px); flex-shrink: 0; }
+
+  .player-cell strong {
+    max-width: 100%;
+    font-size: clamp(8px, 2vw, 11px);
+    margin-bottom: clamp(3px, 1vw, 5px);
+  }
+
+  .player-cell small {
+    max-width: 100%;
+    font-size: clamp(6px, 1.5vw, 8px);
+  }
+.team-size {
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
+     display: block;
+   text-align: center;
+  white-space: nowrap;
+     text-overflow: ellipsis;
+  font-size: clamp(8px, 1.8vw, 10px);
+}
+
+.team-size::after {
+  font-size: clamp(6px, 1.5vw, 8px);
+  margin-left: 3px;
+  flex-shrink: 0;
+}
+.score {
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: clamp(8px, 1.8vw, 11px);
+}  .rank-number { font-size: clamp(8px, 1.8vw, 11px); }
+
+  .table-head > *:nth-child(4),
+  .leader-row > *:nth-child(4) {
+    padding-right: clamp(2px, 1vw, 5px);
+  }
 
   .quote-card { left: 10px; bottom: 10px; width: calc(100% - 78px); min-height: 65px; }
   .quote-card p { font-size: 11px; }
@@ -1350,6 +1474,106 @@ button { cursor: pointer; }
   .stone-snake { left: 4%; top: 42%; width: 92%; height: 35%; }
 
   .running-character { display: none; }
+}
+
+/* ---- ≤480px : small mobile ---- */
+@media (max-width: 480px) {
+  .content {
+  width: calc(100% - 12px);
+  margin: 14px auto 0;
+  padding-bottom: 130px;
+}
+
+  .leaderboard-frame { padding: 3px; }
+
+  .table-head,
+  .leader-row {
+    grid-template-columns:
+      clamp(28px, 8vw, 34px)
+      minmax(0, 1fr)
+      clamp(48px, 14vw, 56px)
+      clamp(54px, 16vw, 62px);
+
+    column-gap: clamp(2px, 0.8vw, 4px);
+  }
+
+  .table-head {
+    min-height: clamp(40px, 10vw, 44px);
+    padding: 0 clamp(4px, 1.2vw, 6px);
+    font-size: clamp(5px, 1.4vw, 6.5px);
+  }
+
+  .leader-row {
+    min-height: clamp(58px, 13vw, 64px);
+    padding: clamp(4px, 1.2vw, 6px);
+  }
+
+  .player-cell { gap: clamp(5px, 1.5vw, 7px); }
+  .player-cell img { width: clamp(28px, 7vw, 34px); height: clamp(28px, 7vw, 34px); }
+  .player-cell strong { font-size: clamp(7px, 1.8vw, 9px); }
+  .player-cell small { font-size: clamp(5.5px, 1.4vw, 6.5px); }
+
+  .rank-number { font-size: clamp(7px, 1.7vw, 9px); }
+  .team-size { font-size: clamp(7px, 1.7vw, 9px); }
+  /* preserve the numeric value, drop the "MEMBERS" word so it can't break the column */
+  .team-size::after { content: ""; margin-left: 0; }
+  .score { font-size: clamp(7px, 1.7vw, 9px); }
+
+  /* keep the search button from getting pushed outside the bar at narrow widths */
+  .team-search { height: 50px; }
+  .team-search-icon { margin: 0 8px 0 6px; }
+  .team-search input { font-size: 13px; }
+  .team-search button { height: 38px; padding: 0 10px; gap: 4px; font-size: 12px; }
+}
+
+/* ---- ≤360px : very small phones ---- */
+@media (max-width: 360px) {
+  .content {
+  width: calc(100% - 8px);
+  margin: 10px auto 0;
+  padding-bottom: 110px;
+}
+
+  .leaderboard-frame { padding: 2px; }
+
+  .table-head,
+.leader-row {
+    grid-template-columns:
+        25px
+        minmax(0, 1fr)
+        55px
+        55px;
+    column-gap: 4px;
+}
+
+.team-size {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.score {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+  .table-head { min-height: 38px; padding: 0 3px; font-size: 5px; }
+  .leader-row { min-height: 55px; padding: 4px; }
+
+  .player-cell { gap: 4px; }
+  .player-cell img { width: 26px; height: 26px; }
+  .player-cell strong { font-size: 7px; }
+  .player-cell small { font-size: 5px; }
+
+  .rank-number { font-size: 7px; }
+  .team-size { font-size: 7px; }
+  .score { font-size: 7px; }
+
+  /* safety floor so the animated title/crown can never overrun a 320-360px viewport */
+  .leaderboard-title { gap: 6px; }
+  .title-letter { font-size: clamp(20px, 8vw, 40px); }
+  .title-crown { font-size: clamp(22px, 8vw, 42px); }
 }
 
 
