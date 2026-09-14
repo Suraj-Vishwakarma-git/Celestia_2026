@@ -30,9 +30,6 @@ export default function Navbar({ open, setOpen }) {
 
       {/* BRAND */}
       <div className="brand">
-        <span className="brand-controller">
-          <Gamepad2 size={25} />
-        </span>
 
         <span className="brand-play">
           CELES
